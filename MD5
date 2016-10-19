@@ -1,0 +1,15 @@
+96dda8f19c8860c17edb9717b280e656 *DESCRIPTION
+efbf3ef9f068ae9470d7bdc198c6bca9 *NAMESPACE
+cf899c3e8722a17f54d7c71730101912 *NEWS.md
+dda5d5c50287a420105737a471fe4131 *R/PCS.r
+00fa29f9fc2e4ee602b3d96951a94180 *R/api.r
+b99f322afe54176b359750575380bb7c *R/convergence.r
+a16ec01c4b1b5f5a4d4010bc1998734d *R/core.r
+e5ef0e14e608f4ea4c66e394c5483319 *R/helpers.r
+a9c988292cf578ef8593c1b1fb8360f6 *README.md
+0c51714f2d79772ea0dc75b9eb03cf60 *man/PCS_convergence_McCandR.Rd
+0297dbbe147bded20e68ae5ce0cf2274 *man/PCS_run.Rd
+83048b542a7cfe290fc79830f582214e *man/PCS_run_from_interconnections.Rd
+4e547390462fe032c06c4f9e9aa85cce *man/PCSinR.Rd
+ae80e4ea534090d62088090f3cadd1b4 *tests/testthat.R
+a5c46864b3eef931a4c5db3832c99d33 *tests/testthat/test_MJ.r
