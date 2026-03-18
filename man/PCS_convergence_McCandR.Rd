@@ -4,8 +4,13 @@
 \alias{PCS_convergence_McCandR}
 \title{Check a PCS network for convergence}
 \usage{
-PCS_convergence_McCandR(iteration, current_energy, memory.matrix,
-  stability_criterion = 10^-6, output = "qualitative")
+PCS_convergence_McCandR(
+  iteration,
+  current_energy,
+  memory.matrix,
+  stability_criterion = 10^-6,
+  output = "qualitative"
+)
 }
 \arguments{
 \item{iteration}{The iteration to consider -- in most cases, this will be the
@@ -38,4 +43,3 @@ convergence threshold.
 \details{
 The check requires the following parameters:
 }
-

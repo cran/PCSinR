@@ -4,10 +4,17 @@
 \alias{PCS_run}
 \title{Simulate the run of a PCS model}
 \usage{
-PCS_run(interconnection_matrix, initial_state, resting_levels, reset,
-  node_names = NULL, stability_criterion = 10^-6, max_iterations = Inf,
+PCS_run(
+  interconnection_matrix,
+  initial_state,
+  resting_levels,
+  reset,
+  node_names = NULL,
+  stability_criterion = 10^-6,
+  max_iterations = Inf,
   convergence_criteria = c(PCS_convergence_McCandR),
-  convergence_names = NULL)
+  convergence_names = NULL
+)
 }
 \arguments{
 \item{interconnection_matrix}{A square, matrix representing the link weights
@@ -62,4 +69,3 @@ A list representing the model state after all convergence criteria
 matrix and model parameters, according to the mechanism outlines by
 McClelland and Rumelhart (1981).
 }
-

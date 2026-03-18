@@ -29,16 +29,22 @@
 #'   value for debugging convergence.
 #'
 #' @export
-PCS_convergence_McCandR <- function(iteration, current_energy, memory.matrix,
-                                    stability_criterion=10^-6, output="qualitative") {
+PCS_convergence_McCandR <- function(
+  iteration,
+  current_energy,
+  memory.matrix,
+  stability_criterion = 10^-6,
+  output = "qualitative"
+) {
   # Felix' interpretation of the McClelland & Rumelhart criterion
   if (iteration <= 10) {
     return(TRUE)
   } else {
     # Convergence stops if the change in energy between iterations
     # is below a certain threshold for > 10 trials
-    energy_changes <- memory.matrix[(iteration-10):(iteration-1), 2] -
-                      memory.matrix[(iteration-9):(iteration), 2]
+    # fmt: skip
+    energy_changes <- memory.matrix[(iteration - 10):(iteration - 1), 2] -
+                      memory.matrix[(iteration -  9):(iteration), 2]
     changes_below_threshold <- sum(energy_changes < stability_criterion)
 
     if (output == "quantitative") {

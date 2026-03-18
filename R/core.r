@@ -7,9 +7,14 @@
 
 # Calculate a new state given an interconnection matrix and
 # aprevious state.
-PCS_iterate <- function(interconnection_matrix, state, resting_levels,
-  decay_rate=0.1, floor=-1, ceiling=1) {
-
+PCS_iterate <- function(
+  interconnection_matrix,
+  state,
+  resting_levels,
+  decay_rate = 0.1,
+  floor = -1,
+  ceiling = 1
+) {
   # Start from a base state
   active_nodes <- state
 
@@ -18,7 +23,9 @@ PCS_iterate <- function(interconnection_matrix, state, resting_levels,
   net_inputs <- active_nodes %*% t(interconnection_matrix)
 
   # Calculate the change based on the net inputs
-  change <- (net_inputs >= 0) * net_inputs * (ceiling - state) +
+  change <- (net_inputs >= 0) *
+    net_inputs *
+    (ceiling - state) +
     (net_inputs < 0) * net_inputs * (-floor + state)
 
   # Calculate node decay

@@ -51,9 +51,17 @@
 #'   provide an exhaustive summary of the model's behavior.
 #'
 #' @export
-PCS_run <- function(interconnection_matrix, initial_state, resting_levels, reset,
-                    node_names=NULL, stability_criterion=10^-6, max_iterations=Inf,
-                    convergence_criteria=c(PCS_convergence_McCandR), convergence_names=NULL) {
+PCS_run <- function(
+  interconnection_matrix,
+  initial_state,
+  resting_levels,
+  reset,
+  node_names = NULL,
+  stability_criterion = 10^-6,
+  max_iterations = Inf,
+  convergence_criteria = c(PCS_convergence_McCandR),
+  convergence_names = NULL
+) {
   # A note on the iteration counter:
   # The counter reflects the current line of the
   # model output, but the iterations start at zero.
@@ -73,7 +81,7 @@ PCS_run <- function(interconnection_matrix, initial_state, resting_levels, reset
 
   # Name the criteria, if that has not already happened
   if (is.null(convergence_names)) {
-    convergence_names <- paste("criterion_", 1:n_criteria, sep="")
+    convergence_names <- paste("criterion_", 1:n_criteria, sep = "")
   }
 
   # Initialize the model state
@@ -85,11 +93,11 @@ PCS_run <- function(interconnection_matrix, initial_state, resting_levels, reset
   # Create the matrix in which we will save
   # the data from the model iterations
   memory.ma <- PCS_memory_create(nodes, node_names)
-  memory.ma[iteration,] <- c(iteration-1, energy, state)
+  memory.ma[iteration, ] <- c(iteration - 1, energy, state)
 
   # Create the matrix in which we will save
   # convergence data
-  convergence.ma <- matrix(ncol=n_criteria, nrow=nrow(memory.ma))
+  convergence.ma <- matrix(ncol = n_criteria, nrow = nrow(memory.ma))
   colnames(convergence.ma) <- convergence_names
   convergence.ma[1, ] <- TRUE
 
@@ -105,7 +113,7 @@ PCS_run <- function(interconnection_matrix, initial_state, resting_levels, reset
     energy <- PCS_energy(interconnection_matrix, state)
 
     # Write the current state into the matrix
-    memory.ma[iteration, ] <- c(iteration-1, energy, state)
+    memory.ma[iteration, ] <- c(iteration - 1, energy, state)
 
     # Expand the output matrix if necessary
     if (PCS_memory_needs_expansion(memory.ma, iteration)) {
@@ -117,15 +125,15 @@ PCS_run <- function(interconnection_matrix, initial_state, resting_levels, reset
     # the given criterion functions
     for (f in 1:n_criteria) {
       convergence.ma[iteration, f] <- convergence_criteria[[f]](
-        iteration=iteration,
-        current_energy=energy,
-        memory.matrix=memory.ma,
-        stability_criterion=stability_criterion,
+        iteration = iteration,
+        current_energy = energy,
+        memory.matrix = memory.ma,
+        stability_criterion = stability_criterion,
       )
     }
 
     # Continue until all criteria are converged
-    continue <- (sum(convergence.ma[iteration,] * 1) > 0)
+    continue <- (sum(convergence.ma[iteration, ] * 1) > 0)
   }
 
   # Prepare and pass along the model output
@@ -179,8 +187,11 @@ PCS_run <- function(interconnection_matrix, initial_state, resting_levels, reset
 #' result$iterations[nrow(result$iterations),]
 #'
 #' @export
-PCS_run_from_interconnections <- function(interconnection_matrix,
-  convergence_criteria=c(PCS_convergence_McCandR), convergence_names="default") {
+PCS_run_from_interconnections <- function(
+  interconnection_matrix,
+  convergence_criteria = c(PCS_convergence_McCandR),
+  convergence_names = "default"
+) {
   # This function is just a simplification to speed up my work
 
   # Infer the number of nodes from the matrix size
@@ -196,6 +207,12 @@ PCS_run_from_interconnections <- function(interconnection_matrix,
   reset <- c(1, rep(0, nodes - 1))
 
   # Good to go! :-)
-  return(PCS_run(interconnection_matrix, state, resting_levels, reset,
-                 convergence_criteria=convergence_criteria, convergence_names=convergence_names))
+  return(PCS_run(
+    interconnection_matrix,
+    state,
+    resting_levels,
+    reset,
+    convergence_criteria = convergence_criteria,
+    convergence_names = convergence_names
+  ))
 }

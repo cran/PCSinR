@@ -4,9 +4,11 @@
 \alias{PCS_run_from_interconnections}
 \title{Simulate the run of a PCS model based on only the interconnection matrix}
 \usage{
-PCS_run_from_interconnections(interconnection_matrix,
+PCS_run_from_interconnections(
+  interconnection_matrix,
   convergence_criteria = c(PCS_convergence_McCandR),
-  convergence_names = "default")
+  convergence_names = "default"
+)
 }
 \arguments{
 \item{interconnection_matrix}{A square, matrix representing the link weights
@@ -39,12 +41,12 @@ parameters. Thereby, it provides a convenient shorthand for the
 # Build interconnection matrix
 interconnections <- matrix(
   c( 0.0000,  0.1015,  0.0470,  0.0126,  0.0034,  0.0000,  0.0000,
-    0.1015,  0.0000,  0.0000,  0.0000,  0.0000,  0.0100, -0.0100,
-    0.0470,  0.0000,  0.0000,  0.0000,  0.0000,  0.0100, -0.0100,
-    0.0126,  0.0000,  0.0000,  0.0000,  0.0000,  0.0100, -0.0100,
-    0.0034,  0.0000,  0.0000,  0.0000,  0.0000, -0.0100,  0.0100,
-    0.0000,  0.0100,  0.0100,  0.0100, -0.0100,  0.0000, -0.2000,
-    0.0000, -0.0100, -0.0100, -0.0100,  0.0100, -0.2000,  0.0000 ),
+     0.1015,  0.0000,  0.0000,  0.0000,  0.0000,  0.0100, -0.0100,
+     0.0470,  0.0000,  0.0000,  0.0000,  0.0000,  0.0100, -0.0100,
+     0.0126,  0.0000,  0.0000,  0.0000,  0.0000,  0.0100, -0.0100,
+     0.0034,  0.0000,  0.0000,  0.0000,  0.0000, -0.0100,  0.0100,
+     0.0000,  0.0100,  0.0100,  0.0100, -0.0100,  0.0000, -0.2000,
+     0.0000, -0.0100, -0.0100, -0.0100,  0.0100, -0.2000,  0.0000 ),
   nrow=7
   )
 
@@ -58,4 +60,3 @@ result$convergence
 result$iterations[nrow(result$iterations),]
 
 }
-
